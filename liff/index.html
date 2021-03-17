@@ -125,14 +125,29 @@
       }
     }
 
+    // async function main() {
+    //   // alert("LINE Developers x Skooldio")
+    //   await liff.init({ liffId: "1655763358-OPj1V236" })
+    //   getEnvironment()
+    //   getUserProfile()
+    //   getContext()
+    //   getFriendship()
+    //   // createUniversalLink()
+    // }
     async function main() {
-      // alert("LINE Developers x Skooldio")
+      liff.ready.then(() => {
+        document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+        if (liff.isLoggedIn()) {
+          getEnvironment()
+          getUserProfile()
+          getContext()
+          getFriendship()
+          createUniversalLink()
+        } else {
+          liff.login()
+        }
+      })
       await liff.init({ liffId: "1655763358-OPj1V236" })
-      getEnvironment()
-      getUserProfile()
-      getContext()
-      getFriendship()
-      // createUniversalLink()
     }
     main()
   </script>
