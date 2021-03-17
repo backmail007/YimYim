@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-  <title>My LIFF app</title>
+  <title>YimYim Res</title>
   <link rel="stylesheet" href="css/style.css" media="all">
 </head>
 <body>
@@ -63,9 +63,16 @@
     }
 
     async function getFriendship() {
+      const friend = await liff.getFriendship()
+      document.getElementById("friendship").append(friend.friendFlag)
+      if (!friend.friendFlag) {
+        if (confirm("คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน จะเพิ่มเลยไหม?")) {
+          window.location = "https://line.me/R/ti/p/@174fyzyu"
+        }
+      }
     }
 
-    async function sendMsg() {
+    async function sendMsg() { //ส่ง
       if (liff.getContext().type !== "none") {
         await liff.sendMessages([
           {
@@ -117,7 +124,7 @@
       getEnvironment()
       getUserProfile()
       getContext()
-      // getFriendship()
+      getFriendship()
       // createUniversalLink()
     }
     main()
